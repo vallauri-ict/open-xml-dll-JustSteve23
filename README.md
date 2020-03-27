@@ -1,6 +1,6 @@
 # OpenXML di GrossoStefano
 
-# **Project Developed by Grosso Stefano**
+# Project Developed by Grosso Stefano
 
 ## Descrizione ##
 > Progetto per la gestione e la creazione di un documento word (excel in arrivo) della suite Office
