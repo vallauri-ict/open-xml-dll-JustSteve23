@@ -14,5 +14,5 @@ All'interno del progetto sono presenti due classi per la gestione di questi docu
 
 ## IMPORTANTE ##
 Per l'utilizzo di openxml è gia presente nel repository il pacchetto Nuget
-da integrare su VisualStudio Per potetr utilizare openXML
+da integrare su VisualStudio Per poter utilizare openXML
 
