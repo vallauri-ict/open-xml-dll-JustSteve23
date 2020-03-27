@@ -9,8 +9,8 @@
 
 ## Classi importanti ##
 All'interno del progetto sono presenti due classi per la gestione di questi documenti:
-* clsOpenXmlWordUtilities, per la gestione di documenti word
-* (in arrivo)clsOpenXmlExcelUtilities, per la gestione di documenti excel
+* clsOpenXmlWordUtilities,gestione di documenti word
+* (in arrivo)clsOpenXmlExcelUtilities,gestione di documenti excel
 
 ## IMPORTANTE ##
 Per l'utilizzo di openxml è gia presente nel repository il pacchetto Nuget
