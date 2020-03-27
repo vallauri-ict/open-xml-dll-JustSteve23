@@ -1,4 +1,4 @@
-# openxml di GrossoStefano
+# OpenXML di GrossoStefano
 
 **Project Developed by Grosso Stefano**
 
