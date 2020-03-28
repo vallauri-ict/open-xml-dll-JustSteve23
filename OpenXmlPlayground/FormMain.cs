@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
-
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
@@ -35,17 +34,17 @@ namespace OpenXmlPlayground
                     Body body = mainPart.Document.AppendChild(new Body());
 
                     // Define the styles
-                    ClsOpenXmlUtilities.AddStyle(mainPart, "MyHeading1", "style1", "Verdana", 28, "#0000FF", false, true, true);
-                    ClsOpenXmlUtilities.AddStyle(mainPart, "MyTypeScript", "Macchina da scrivere", "Consolas", 10, "#333333", true, false, false);
+                    ClsOpenXmlUtilitiesWord.AddStyle(mainPart, "MyHeading1", "style1", "Verdana", 28, "#0000FF", false, true, true);
+                    ClsOpenXmlUtilitiesWord.AddStyle(mainPart, "MyTypeScript", "Macchina da scrivere", "Consolas", 10, "#333333", true, false, false);
 
                     // Add MyHeading1 styled text
-                    Paragraph headingPar = ClsOpenXmlUtilities.CreateParagraphWithStyle("MyHeading1", JustificationValues.Center);
-                    ClsOpenXmlUtilities.AddTextToParagraph(headingPar, "Titolo con stile applicato");
+                    Paragraph headingPar = ClsOpenXmlUtilitiesWord.CreateParagraphWithStyle("MyHeading1", JustificationValues.Center);
+                    ClsOpenXmlUtilitiesWord.AddTextToParagraph(headingPar, "Titolo con stile applicato");
                     body.AppendChild(headingPar);
 
                     // Add MyTypeScript styled text
-                    Paragraph typescriptPar = ClsOpenXmlUtilities.CreateParagraphWithStyle("MyTypeScript", JustificationValues.Left);
-                    ClsOpenXmlUtilities.AddTextToParagraph(typescriptPar, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+                    Paragraph typescriptPar = ClsOpenXmlUtilitiesWord.CreateParagraphWithStyle("MyTypeScript", JustificationValues.Left);
+                    ClsOpenXmlUtilitiesWord.AddTextToParagraph(typescriptPar, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
                     body.AppendChild(typescriptPar);
 
                     // Add simple text
@@ -79,7 +78,7 @@ namespace OpenXmlPlayground
                     }
 
                     // Append image
-                    ClsOpenXmlUtilities.InsertPicture(doc, "panorama.jpg");
+                    ClsOpenXmlUtilitiesWord.InsertPicture(doc, "panorama.jpg");
                 }
                 Process.Start(filepath);
             }
@@ -342,6 +341,50 @@ namespace OpenXmlPlayground
             retVal.Add(p3);
 
             return retVal;
+        }
+
+        private void btnSimpleExcelTest_Click(object sender, EventArgs e)
+        {
+            string filepath = "Test.xlsx";
+            try
+            {
+                List<ClsOpenXmlUtilitiesExcel> tmList = new List<ClsOpenXmlUtilitiesExcel>();
+                ClsOpenXmlUtilitiesExcel tm = new ClsOpenXmlUtilitiesExcel();
+                tm.TestId = 1;
+                tm.TestName = "Test1";
+                tm.TestDesc = "Tested 1 time";
+                tm.TestDate = DateTime.Now.Date;
+                tmList.Add(tm);
+
+                ClsOpenXmlUtilitiesExcel tm1 = new ClsOpenXmlUtilitiesExcel();
+                tm1.TestId = 2;
+                tm1.TestName = "Test2";
+                tm1.TestDesc = "Tested 2 times";
+                tm1.TestDate = DateTime.Now.AddDays(-1);
+                tmList.Add(tm1);
+
+                ClsOpenXmlUtilitiesExcel tm2 = new ClsOpenXmlUtilitiesExcel();
+                tm2.TestId = 3;
+                tm2.TestName = "Test3";
+                tm2.TestDesc = "Tested 3 times";
+                tm2.TestDate = DateTime.Now.AddDays(-2);
+                tmList.Add(tm2);
+
+                ClsOpenXmlUtilitiesExcel tm3 = new ClsOpenXmlUtilitiesExcel();
+                tm3.TestId = 4;
+                tm3.TestName = "Test4";
+                tm3.TestDesc = "Tested 4 times";
+                tm3.TestDate = DateTime.Now.AddDays(-3);
+                tmList.Add(tm);
+
+                ClsOpenXmlUtilitiesExcel.CreateExcelFile(tmList, filepath);
+                Process.Start(filepath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Problemi col documento. Se è aperto da un altro programma, chiudilo e riprova...");
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
